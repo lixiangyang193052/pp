@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.TJobMapper">
+
+    <resultMap id="getJobAndDepMap" type="com.iotek.model.TJob" >
+        <id column="J_ID" property="jId"/>
+        <result property="jName" column="J_NAME"/>
+        <result property="jTime" column="J_TIME"/>
+        <association property="tDep" javaType="com.iotek.model.TDep">
+            <id property="dId" column="D_ID"/>
+            <result property="dName" column="D_NAME"/>
+            <result property="dTime" column="D_TIME"/>
+        </association>
+    </resultMap>
+
+    <insert id="addJob">
+        insert into T_JOB(J_ID, J_DID, J_NAME, J_TIME) values (SEQ_JOB.nextval,#{tDep.dId},#{jName},#{jTime})
+    </insert>
+    <update id="upJob">
+        update T_JOB set J_NAME=#{jName} WHERE J_ID=#{jId}
+    </update>
+    <delete id="delJob">
+        delete from T_JOB where J_ID=#{jId}
+    </delete>
+
+    <select id="getJobByJid" resultMap="getJobAndDepMap">
+      select * from T_JOB
+      left outer  join T_DEP
+      on T_JOB.J_DID=T_DEP.D_ID
+      where T_JOB.J_ID=#{jId}
+    </select>
+
+    <select id="getJobs" resultMap="getJobAndDepMap">
+        select * from T_JOB LEFT OUTER JOIN T_DEP
+        ON T_JOB.J_DID=T_DEP.D_ID
+    </select>
+
+    <select id="getJobsByDid" resultType="com.iotek.model.TJob">
+        select * from T_JOB where J_DID=#{did}
+    </select>
+
+</mapper>

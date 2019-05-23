@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.TDepMapper">
+
+    <insert id="addDEP">
+        insert into T_DEP(D_ID, D_NAME, D_TIME) VALUES (SEQ_DEP.nextval,#{dName},#{dTime})
+    </insert>
+    <update id="upDEP">
+        update T_DEP SET D_NAME=#{dName} WHERE D_ID=#{dId}
+    </update>
+    <delete id="delDEP">
+        DELETE FROM T_DEP WHERE D_ID=#{dId}
+    </delete>
+
+    <select id="getDEPByDid" resultMap="getTdepAndJobMap">
+      SELECT * FROM T_DEP WHERE D_ID=#{dId}
+    </select>
+    <select id="getDeps" resultMap="getTdepAndJobMap">
+        select * from T_DEP
+    </select>
+
+    <resultMap id="getTdepAndJobMap" type="com.iotek.model.TDep">
+        <id property="dId" column="D_ID" />
+        <result property="dName" column="D_NAME"/>
+        <result property="dTime" column="D_TIME"/>
+        <collection property="tJobs" ofType="com.iotek.model.TJob"
+                    column="D_ID" select="com.iotek.dao.TJobMapper.getJobsByDid"/>
+    </resultMap>
+
+
+</mapper>
