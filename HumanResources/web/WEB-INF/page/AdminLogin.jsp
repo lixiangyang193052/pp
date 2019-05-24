@@ -16,6 +16,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>商家登录</title>
+
 </head>
 <body>
 <form action="adminLogin" method="post" style="padding-top: 150px">
@@ -42,5 +43,6 @@
         </tr>
     </table>
 </form>
+
 </body>
 </html>

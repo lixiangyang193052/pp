@@ -17,6 +17,22 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>欢迎来到管理页面</title>
+
+    <style>
+        a{text-decoration:none}
+        /*超链接在浏览之前的样式*/
+        a:link{color:red}
+
+        /*超链接浏览之后的样式*/
+        a:visited{color:green}
+
+        /*鼠标悬停在超链接上面时的样式*/
+        a:hover{color: darkorange}
+
+        /*超链接在鼠标按下时的样式*/
+        a:active{color:blue}
+    </style>
+
 </head>
 <body>
 <%
@@ -27,15 +43,16 @@
         <%--<img src="../../img/ad01.jpg" style="background-repeat: no-repeat;position: relative;"/>--%>
     <%--</div>--%>
     <div align="center" style="align-content: center;padding-top: 10px;">
-        <h3 style="color: cornflowerblue">欢迎您，<%=admin.getaName()%></h3>
-        <a href="#" style="color: red">发布招聘信息</a>　　　
-        <a href="toDepmanagePage" style="color: coral">部门管理</a>　　　
-        <a href="#" style="color: mediumslateblue">录用申请</a>　　　
-        <a href="#" style="color: darkviolet">薪资结算</a>　　　
-        <a href="#" style="color: orange">考勤管理</a>　　　
-        <a href="#" style="color: greenyellow">培训管理</a>　　　
-        <a href="#" style="color: fuchsia">奖惩管理</a>　　　
-        <a href="http://localhost:8066/HumanResources/" style="color: gold">退出</a>　　　
+        <h1 style="color: darkviolet">欢迎您，<%=admin.getaName()%></h1>
+        <a href="#" >发布招聘信息</a>　　　
+        <a href="toDepmanagePage" >部门管理</a>　　　
+        <a href="#" >录用申请</a>　　　
+        <a href="#" >薪资结算</a>　　　
+        <a href="#" >考勤管理</a>　　　
+        <a href="#" >培训管理</a>　　　
+        <a href="#" >奖惩管理</a>　　　
+        <a href="http://localhost:8066/HumanResources/" >退出</a>　　
+        　
     </div>
 </div>
 </body>

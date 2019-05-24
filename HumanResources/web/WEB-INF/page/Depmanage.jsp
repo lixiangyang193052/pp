@@ -23,7 +23,32 @@
 </head>
 <script src="../../js/jquery-3.1.0.js"></script>
 <script>
+    $(document).ready(function () {
 
+        $(":button").click(function () {
+
+                alert("ok");
+
+        })
+
+        $("#did").change(function () {
+            $.ajax({
+                type: "get",
+                url: "ganged",
+                data: {did: $("#did").val()},
+                success: function (data) {
+                    for (var i in data){
+                        var job = data[i];
+                        var jName= job['jName'];
+                        alert(jName);
+                        // var t= data[i]['jName'];
+                        // alert(t);
+                    }
+                }
+            });
+        })
+
+    })
 </script>
 <body>
 <div style="align-content: center;padding-top: 100px">
@@ -38,38 +63,29 @@
 
         <%
             List<TDep> deps = (List<TDep>) session.getAttribute("Deps");
-            if (deps!=null&&deps.size()!=0){
-                for (TDep dep : deps) {
-                    Set<TJob> tJobs = dep.gettJobs();
 
-                }
+            if (deps!=null&&deps.size()!=0){
         %>
         <tr>
             <td align="center">
 
-                <select>
+                <select  id="did">
                     <%
                         for (TDep dep : deps) {
                     %>
-                            <option id="dep"><%=dep.getdName()%></option>
-
+                            <option  value="<%=dep.getdId()%>"><%=dep.getdName()%></option>
                     <%
                         }
                     %>
                 </select>
             </td>
+
             <td align="center">
 
-                <select>
-                    <%
+                <select  id="jid">
 
-                    %>
-                    <option id="dep"></option>
-
-                    <%
-
-                    %>
                 </select>
+
             </td>
         </tr>
 
